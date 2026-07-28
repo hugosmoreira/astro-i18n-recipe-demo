@@ -1,0 +1,26 @@
+---
+import { languages, type Lang, type Route } from "../i18n/ui";
+import { getLocalizedPath } from "../i18n/utils";
+
+interface Props {
+  route: Route;
+  path?: string;
+}
+
+const { route, path } = Astro.props;
+---
+
+<ul>
+  {
+    Object.entries(languages).map(([code, label]) => {
+      const lang = code as Lang;
+      return (
+        <li>
+          <a href={getLocalizedPath(route, lang, path)} hreflang={lang}>
+            {label}
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>

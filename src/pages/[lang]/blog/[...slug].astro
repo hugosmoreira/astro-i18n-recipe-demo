@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from "astro:content";
+import { useTranslations } from "../../../i18n/utils";
+import Base from "../../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("blog");
+
+  const paths = pages.map((page) => {
+    const [lang, ...slug] = page.id.split("/");
+    return { params: { lang, slug: slug.join("/") || undefined }, props: page };
+  });
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+const page = Astro.props;
+const t = useTranslations(Astro.currentLocale);
+const formattedDate = page.data.date.toLocaleDateString(
+  Astro.currentLocale,
+  { timeZone: "UTC" },
+);
+const { Content } = await render(page);
+---
+
+<Base route="blog" path={slug}>
+  <h1>{page.data.title}</h1>
+  <p>{t("blog.by")} {page.data.author} • {formattedDate}</p>
+  <Content />
+</Base>

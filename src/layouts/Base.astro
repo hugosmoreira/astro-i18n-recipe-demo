@@ -1,0 +1,30 @@
+---
+import LanguagePicker from "../components/LanguagePicker.astro";
+import Nav from "../components/Nav.astro";
+import type { Route } from "../i18n/ui";
+import { getLang } from "../i18n/utils";
+
+interface Props {
+  route: Route;
+  path?: string;
+}
+
+const { route, path } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro</title>
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <footer>
+      <LanguagePicker route={route} path={path} />
+    </footer>
+  </body>
+</html>

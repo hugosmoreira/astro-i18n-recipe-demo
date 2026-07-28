@@ -1,0 +1,24 @@
+---
+import { getLang, getLocalizedPath, useTranslations } from "../i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<ul>
+  <li>
+    <a href={getLocalizedPath("home", lang)}>
+      {t("nav.home")}
+    </a>
+  </li>
+  <li>
+    <a href={getLocalizedPath("about", lang)}>
+      {t("nav.about")}
+    </a>
+  </li>
+  <li>
+    <a href="https://twitter.com/astrodotbuild">
+      {t("nav.twitter")}
+    </a>
+  </li>
+</ul>
