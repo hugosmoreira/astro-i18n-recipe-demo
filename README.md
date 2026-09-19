@@ -11,7 +11,7 @@ This is a runnable companion project for [withastro/docs PR #14304](https://gith
 
 ## Run locally
 
-Use Node.js 22.12.0 or newer.
+Use Node.js 22.19.0 or newer.
 
 ```sh
 npm ci
@@ -33,4 +33,4 @@ npm run check
 npm run build
 ```
 
-The project is pinned to Astro 7.1.5.
+The project is pinned to Astro 7.3.3.
